@@ -1,5 +1,5 @@
 NAME=terraform
-VERSION=0.12.23
+VERSION=0.12.24
 TERRAFORM_VERSION=$(VERSION)
 REVISION=1
 MAINT=james.earl.3@gmail.com
@@ -11,7 +11,7 @@ SRC_64=https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$
 
 .PHONY: dev build publish-gemfury ls uninstall install clean
 
-dev: clean build install
+dev: clean build
 
 build: dist/$(DEB_64)
 
@@ -49,7 +49,7 @@ clean:
 	rm -rf dist/*
 
 uninstall:
-	sudo apt remove -y $(NAME) || true
+	apt remove -y $(NAME) || true
 
 install:
-	sudo apt install -y --reinstall --allow-downgrades ./dist/$(DEB_64)
+	apt install -y --reinstall --allow-downgrades ./dist/$(DEB_64)
